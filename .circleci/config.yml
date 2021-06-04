@@ -35,7 +35,7 @@ jobs:
           command: |
             cat output.txt
 
-      - print_pipeline_id
+      - print_pipeline_id:
 
 workflows:
   default:
