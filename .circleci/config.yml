@@ -36,11 +36,25 @@ jobs:
             cat output.txt
       - print_pipeline_id
 
+  failure_job:
+    docker:
+      - image:  cicrcleci/node:13.8.0
+    steps:
+      - run:  
+          name: Job Failure
+          command:  |
+            return 1
+      - run:
+          when: on_fail  
+          name: This Step Runs On Failure
+          command:  |
+            echo 'It works! Failure Step Ran'
+
 workflows:
   default:
     jobs:
       - save_hello_world_output
       - print_output_file:
           requires: [save_hello_world_output]
-
-
+      - failure_job:
+          requires: [save_hello_world_output, print_output_file]
