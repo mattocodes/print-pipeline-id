@@ -38,7 +38,7 @@ jobs:
 
   failure_job:
     docker:
-      - image:  cicrcleci/node:13.8.0
+      - image:  circleci/node:13.8.0
     steps:
       - run:  
           name: Job Failure
